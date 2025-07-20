@@ -1,0 +1,63 @@
+{% extends 'base.html' %} {% load static %} {% block head %}
+<link rel="stylesheet" href="{% static 'css/course/course-detail.css' %}" />
+{% endblock %} {% block content %}
+<section class="course-container">
+  <div class="course-img">
+    <img src="{% static 'images/classroom1.jpeg' %}" alt="Classroom" />
+  </div>
+  <div class="course-details">
+    <h1>{{ course.name }}</h1>
+    <p>{{ course.description }}</p>
+    {% if course.year > 0 %}
+    <h2>{{ course.term }} {{ course.year }}</h2>
+    {% else %}
+    <h2>{{ course.term }}</h2>
+    {% endif %}
+
+    <div class="course-actions">
+      <a href="{% url 'course-update' course.id %}" class="btn warn">Edit</a>
+      <a href="{% url 'course-delete' course.id %}" class="btn danger"
+        >Delete</a
+      >
+    </div>
+  </div>
+</section>
+
+<div class="locations-professor-container">
+  <section class="locations">
+    <div class="subsection-title">
+      <h2>Locations</h2>
+      <img src="{% static 'images/LA.jpeg' %}" alt="LA Campus" />
+      <img src="{% static 'images/NY.jpeg' %}" alt="NY Campus" />
+      <img src="{% static 'images/HTX.jpeg' %}" alt="HTX Campus" />
+    </div>
+    <h3>Add a Location</h3>
+
+    <form
+      action="{% url 'add-location' course.id %}"
+      method="post"
+      class="subsection-content"
+      autocomplete="off"
+    >
+      {% csrf_token %} {{ location_form.as_p }}
+      <button type="submit" class="btn submit">Add Location</button>
+    </form>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Campus</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for location in course.location.all %}
+        <tr>
+          <td>{{ location.get_campus_display }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+</div>
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %} {% load static %} {% block head %}
+<link
+  rel="stylesheet"
+  href="{% static 'css/courses/course-index.css' %}"
+/>
+{% endblock %} {% block content %}
+
+<section class="page-header">
+  <h1>Course List</h1>
+  <img
+    src="{% static 'images/English-Book.jpg' %}"
+    alt="Intro to English"
+  />
+  <img
+    src="{% static 'images/Programming-Book.jpg' %}"
+    alt="Intro to Programming in Python"
+  />
+  <img
+    src="{% static 'images/Intermediate-Geometry.jpg' %}"
+    alt="Intermediate Geometry"
+  />
+  <img
+    src="{% static 'images/Basic-Physics.jpg' %}"
+    alt="Intro to Physics"
+  />
+</section>
+
+<section class="card-container">
+  {% for course in courses %}
+  <div class="card">
+    <a href="{% url 'course-detail' course.id %}">
+    <div class="card-content">
+      <div class="card-img-container">
+        <img
+          src="{% static 'images/Classroom.jpg' %}"
+          alt="Classroom photo"
+        />
+      </div>
+      <h2 class="card-title">{{ course.name }}</h2>
+      {% if course.year > 0 %}
+      <p> {{ course.term }} {{ course.year }}</p>
+      {% else %}
+      <p> {{ course.term }}.</p>
+      {% endif %}
+      <p><small>{{ course.description }}</small></p>
+    </div>
+  </div>
+  {% endfor %}
+</section>
+
+{% endblock %}
