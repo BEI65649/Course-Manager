@@ -59,5 +59,85 @@
     </table>
   </section>
 </div>
+<section class="locations">
+
+</section>
+
+
+  <h3>Available Professors</h3>
+  <div class="subsection-content">
+    {% if professors.count %} 
+    {% for professor in professors.all %}
+      <div class="professor-container">
+        <div class="color-block" style="background-color: {{ professor.name }}"></div>
+        <a href="{% url 'professor-detail' professor.id %}">
+          <p> {{ professor.name }} {{ professor.bio }}</p>
+        </a>
+        <form action="{% url 'associate-professor' course.id professor.id %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="btn submit">Add Professor</button>
+        </form>
+      </div>
+    {% endfor %}
+    {% else %}
+    <p class="all-professors">{{course.name}} already has all the available professors </p>
+  {% endif %}
+  </div>
+</section>
+
+  
+</div>
+
+<section class="professors">
+  <div class="subsection-title">
+    <h2>Professors</h2>
+    <!-- <img src="{% static 'images/NuttyProfessor.jpeg' %}" alt="Nutty Professor" /> -->
+  </div>
+  <h3>{{ course.name }}' Professors</h3>
+  <div class="subsection-content">
+  
+
+   {% if course.professors.count %}
+    {% for professor in professors %}
+      <div class="professor-container">
+        <div class="color-block" style="background-color: {{ professor.bio }}"></div>
+        <a href="{% url 'professor-detail' professor.id %}">
+            <p> {{ professor.name }} - {{ professor.bio }}</p>
+            <form action="{% url 'remove-professor' course.id professor.id %}" method="post">
+        {% csrf_token %}
+           <button type="submit" class="btn btn-danger">Remove Professor</button>
+          </form>
+          </a>
+      </div>
+      {% endfor %}
+    {% else %}
+      <p class="no-professors">{{course.name}} doesn't have a professor assigned!</p>
+    {% endif %}
+  </div>
+
 
 {% endblock %}
+
+  <!-- <h3>Available Professors</h3>
+<div class="subsection-content">
+  {% if professors.count %} 
+    {% for professor in prfoessors.all %}
+      <div class="professor-container">
+        <div class="color-block" style="background-color: {{ professor.bio }}"></div>
+        <a href="{% url 'professor-detail' professor.id %}">
+          <p> {{ professor.name }} {{ professor.bio }}</p>
+        </a>
+        <form action="{% url 'associate-professor' course.id professor.id %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="btn submit">Add Professor</button>
+        </form>
+      </div>
+    {% endfor %} 
+  {% else %}
+    <p class="all-professors">{{course.name}} already has all the available professors </p>
+  {% endif %}
+</div> -->
+
+
+
+

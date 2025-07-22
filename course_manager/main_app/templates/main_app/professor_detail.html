@@ -1,0 +1,19 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/professors/professor-detail.css' %}" />
+{% endblock %} 
+{% block content %}
+
+<div class="card" style="border-color: {{ professor.bio }}">
+  <div class="card-bg" style="background-color: {{ toy.bio }}"></div>
+  <div class="card-content">
+    <h2>{{ professor.name }}</h2>
+    <p> {{ professor.bio }} </p>
+  </div>
+</div>
+<a href="{% url 'professor-update' professor.id %}" class="btn warn">Edit</a>
+<a href="{% url 'professor-delete' professor.id %}" class="btn danger">Delete</a>
+
+
+{% endblock %}

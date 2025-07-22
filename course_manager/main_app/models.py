@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 
 
@@ -10,6 +11,15 @@ CAMPUS = (
 )
 
 
+class Professor(models.Model):
+    name = models.CharField(max_length=50)
+    bio = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('professor-detail', kwargs={'pk': self.id})
 
 
 class Course(models.Model):
@@ -17,6 +27,8 @@ class Course(models.Model):
     term = models.CharField(max_length=100)
     description = models.TextField(max_length=250)
     year = models.IntegerField()
+    professors = models.ManyToManyField(Professor)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -40,12 +52,3 @@ class Location(models.Model):
 
 
 
-class Professor(models.Model):
-    name = models.CharField(max_length=50)
-    bio = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.name
-
-    def get_absolute_url(self):
-        return reverse('professor-detail', kwargs={'pk': self.id})

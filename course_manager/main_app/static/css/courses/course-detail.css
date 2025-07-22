@@ -41,7 +41,7 @@
   margin: 0 8px;
 }
 
-.toy-container {
+.professor-container {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -54,21 +54,21 @@
   margin-right: 10px;
 }
 
-.unfed,
-.fed,
-.no-toys,
-.all-toys {
+.nolocation,
+.location,
+.no-professors,
+.all-professors {
   margin: 0;
   font-weight: bold;
 }
 
-.unfed,
-.no-toys {
+.nolocation,
+.no-professors {
   color: var(--danger);
 }
 
-.fed,
-.all-toys {
+.location,
+.all-professors {
   color: var(--submit);
 }
 
@@ -116,14 +116,14 @@
   margin-left: 16px;
 }
 
-.locationss h2,
-.toys h2 {
+.locations h2,
+.professors h2 {
   font-size: 3.2rem;
   margin: 0;
 }
 
 .locations h3,
-.toys h3 {
+.professorss h3 {
   font-size: var(--font-xl);
   margin: 10px 0;
 }
@@ -162,16 +162,16 @@
   background-color: #f3f3fd;
 }
 
-.toy-container p {
+.professor-container p {
   margin: 12px 0;
 }
 
-.toy-container a {
+.professor-container a {
   text-decoration: none;
   color: #111;
 }
 
-.toy-container .btn {
+.professor-container .btn {
   padding: 3px 10px;
   margin-left: 10px;
 }
@@ -216,4 +216,14 @@
   .locations-professor-container {
     padding: 0 40px;
   }
+}
+
+.professor {
+  background: #111;
+  border: 2px solid #ffc72c;
+  border-radius: 10px;
+  padding: 24px;
+  margin-top: 32px;
+  margin-bottom: 32px;
+  box-sizing: border-box;
 }

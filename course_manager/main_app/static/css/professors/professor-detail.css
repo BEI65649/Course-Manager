@@ -1,0 +1,127 @@
+/* main {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  min-height: auto;
+}
+
+.card {
+  width: 224px;
+  height: 224px;
+  margin: 25px 25px 15px 40px;
+  border: solid 2px;
+  box-shadow: var(--card-box-shadow);
+  position: relative;
+}
+
+.card-bg {
+  opacity: 0.4;
+  position: absolute;
+  display: inline-flex;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.card-content {
+  padding: 15px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  flex-direction: column;
+  color: var(--text-color);
+}
+
+.btn {
+  margin-bottom: 15px;
+}
+
+.card h2 {
+  margin: 7px 0;
+  font-size: var(--font-xl);
+  z-index: 1;
+}
+
+.card p {
+  margin: 0;
+  font-size: var(--font-reg);
+  z-index: 1;
+} */
+
+
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  width: 100vw;
+}
+
+.card {
+  width: 30vw;
+  max-width: 350px;
+  min-width: 220px;
+  height: 30vw;
+  max-height: 350px;
+  min-height: 220px;
+  margin: 25px;
+  border: solid 2px #ffc72c;
+  border-radius: 12px;
+  box-shadow: var(--card-box-shadow, 0 2px 8px rgba(0,0,0,0.15));
+  position: relative;
+  background: #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.card-bg {
+  opacity: 0.4;
+  position: absolute;
+  display: inline-flex;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.card-content {
+  padding: 15px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+}
+
+.card h2 {
+  margin: 12px 0 8px 0;
+  font-size: 2rem;
+  color: #ffc72c;
+  font-weight: bold;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+.card p {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #fff;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+.btn {
+  margin-top: 15px;
+}

@@ -43,6 +43,10 @@
       <p> {{ course.term }}.</p>
       {% endif %}
       <p><small>{{ course.description }}</small></p>
+       {% for location in course.location_set.all %}
+       <p> {{location.get_campus_display}}</p>
+       <p> {{professor.name}} </p>
+     {% endfor %}  
     </div>
   </div>
   {% endfor %}

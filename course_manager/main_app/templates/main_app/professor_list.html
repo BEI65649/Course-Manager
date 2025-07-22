@@ -1,0 +1,30 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/professors/professor-index.css' %}" />
+{% endblock %} 
+{% block content %}
+
+<section class="page-header">
+  <h1> Course Professors</h1>
+  <img src="{% static 'images/computer.jpeg' %}" alt="A Professor" />
+  <img src="{% static 'images/NuttyProfessor.jpeg' %}" alt="A Nutty Professor" />
+  <img src="{% static 'images/Professor1.jpeg' %}" alt="A Professor" />
+  <img src="{% static 'images/Professor2.jpeg' %}" alt="A Professor" />
+</section>
+
+<section class="card-container">
+  {% for professor in professor_list %}
+    <div class="card" style="border-color: {{ professor.color }}">
+      <div class="card-bg" style="background-color: {{ professor.color }}"></div>
+      <a href="{% url 'professor-detail' professor.id %}">
+        <div class="card-content">
+          <h2>{{ professor.name }}</h2>
+          <p> {{ professor.bio }} </p>
+        </div>
+      </a>
+    </div>
+  {% endfor %}
+</section>
+
+{% endblock %}
