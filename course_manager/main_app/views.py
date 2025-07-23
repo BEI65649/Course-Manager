@@ -6,26 +6,10 @@ from .models import Course, Professor
 from .forms import LocationForm, UserForm
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import login
-# from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-
-
-# class Course:
-#       def __init__(self, name, term, description, year):
-#         self.name = name
-#         self.term = term
-#         self.description = description
-#         self.year = year
-
-# courses = [
-#     Course('English101', 'Summer', 'Intro to Literature.', 2025),
-#     Course('Programming101', 'Spring', 'Intro to Programming in Python.', 2026),
-#     Course('Mathmatics201', 'Winter', 'Intermediate Geometry.', 2025),
-#     Course('Physics101', 'Fall', 'Intro to Physics.', 2025)
-# ]  
       
 
 class Home(LoginView):
@@ -50,12 +34,11 @@ def course_detail(request, course_id):
     except Course.DoesNotExist:
         return redirect('course_create')
     professors = Professor.objects.all() 
-    professors_course_doesnt_have = Professor.objects.exclude(id__in = course.professors.all().values_list('id')) # Fetch all toys
+    professors_course_doesnt_have = Professor.objects.exclude(id__in = course.professors.all().values_list('id'))
     location_form = LocationForm()
     return render(request, 'courses/detail.html', {
-        # include the cat and feeding_form in the context
         'course': course, 'location_form': location_form,
-        'professors': professors_course_doesnt_have  # send those toys
+        'professors': professors_course_doesnt_have  
     })
 
 class CourseCreate(LoginRequiredMixin, CreateView):
