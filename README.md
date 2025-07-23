@@ -14,4 +14,4 @@ Technologies: Postgresql, Django, and Python
 
 Next Steps: Enhance the design layout, perhaps add short videos of the course description.
 
-![My Logo](./images/CMlogo.jpg)
+![My Logo](../images/CMlogo.jpg)
