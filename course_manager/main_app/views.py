@@ -33,7 +33,6 @@ def course_detail(request, course_id):
         course = Course.objects.get(user=request.user, id=course_id)
     except Course.DoesNotExist:
         return redirect('course_create')
-    # professors = Professor.objects.all() 
     professors_course_doesnt_have = Professor.objects.exclude(id__in = course.professors.all().values_list('id'))
     location_form = LocationForm()
     return render(request, 'courses/detail.html', {
@@ -91,9 +90,6 @@ def associate_professor(request, course_id, professor_id):
     course.professors.add(professor)
     return redirect('course-detail', course_id=course_id)
 
-# def associate_professor(request, course_id, professor_id):
-#     Course.objects.get(id=course_id).professors.add(professor_id)
-#     return redirect('course-detail', course_id=course_id)
 
 @login_required
 def remove_professor(request, course_id, professor_id):
