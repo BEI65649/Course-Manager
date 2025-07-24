@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0;
   background: #000;
-  /* background-image: url('../images/graduationcap.jpg'); */
+  background-image: url('../images/graduationcap.jpg');
   background-size: cover;
   color: #fff;
   font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
@@ -350,3 +350,5 @@ footer {
 #logout-form button:hover {
   color: var(--link-hover-color);
 }
+
+

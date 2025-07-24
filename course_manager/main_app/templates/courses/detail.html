@@ -5,22 +5,43 @@
   <div class="course-img">
     <img src="{% static 'images/classroom1.jpeg' %}" alt="Classroom" />
   </div>
+
   <div class="course-details">
-    <h1>{{ course.name }}</h1>
-    <p>{{ course.description }}</p>
+    <h1>
+      {{ course.name }}
+    </h1>
+    <p>
+      {{ course.description }}
+    </p>
     {% if course.year > 0 %}
-    <h2>{{ course.term }} {{ course.year }}</h2>
+    <h2>
+      {{ course.term }}
+      {{ course.year }}
+    </h2>
     {% else %}
-    <h2>{{ course.term }}</h2>
+    <h2>
+      {{ course.term }}
+    </h2>
     {% endif %}
 
-    <div class="course-actions">
-      <a href="{% url 'course-update' course.id %}" class="btn warn">Edit</a>
-      <a href="{% url 'course-delete' course.id %}" class="btn danger"
-        >Delete</a
-      >
-    </div>
+    {% if course.professors.count %}
+    <h3>Assigned Professors:</h3>
+    <ul>
+      {% for professor in course.professors.all %}
+      <li>
+        <a href="{% url 'professor-detail' professor.id %}">
+          {{ professor.name }}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>No professors assigned to this course.</p>
+    {% endif %}
   </div>
+
+
+
 </section>
 
 <div class="locations-professor-container">
@@ -33,13 +54,9 @@
     </div>
     <h3>Add a Location</h3>
 
-    <form
-      action="{% url 'add-location' course.id %}"
-      method="post"
-      class="subsection-content"
-      autocomplete="off"
-    >
-      {% csrf_token %} {{ location_form.as_p }}
+    <form action="{% url 'add-location' course.id %}" method="post" class="subsection-content" autocomplete="off">
+      {% csrf_token %}
+      {{ location_form.as_p }}
       <button type="submit" class="btn submit">Add Location</button>
     </form>
 
@@ -52,7 +69,9 @@
       <tbody>
         {% for location in course.location.all %}
         <tr>
-          <td>{{ location.get_campus_display }}</td>
+          <td>
+            {{ location.get_campus_display }}
+          </td>
         </tr>
         {% endfor %}
       </tbody>
@@ -63,62 +82,67 @@
 
 </section>
 
-
-  <h3>Available Professors</h3>
-  <div class="subsection-content">
-    {% if professors.count %} 
-    {% for professor in professors.all %}
+<section>
+  <section class="professor">
+    <h3>Available Professors</h3>
+    <div class="subsection-content">
+      {% if professors.count %}
+      {% for professor in professors.all %}
       <div class="professor-container">
         <div class="color-block" style="background-color: {{ professor.name }}"></div>
         <a href="{% url 'professor-detail' professor.id %}">
-          <p> {{ professor.name }} {{ professor.bio }}</p>
+          <p>
+            {{ professor.name }}
+            {{ professor.bio }}
+          </p>
         </a>
         <form action="{% url 'associate-professor' course.id professor.id %}" method="post">
           {% csrf_token %}
           <button type="submit" class="btn submit">Add Professor</button>
         </form>
       </div>
-    {% endfor %}
-    {% else %}
-    <p class="all-professors">{{course.name}} already has all the available professors </p>
-  {% endif %}
+      {% endfor %}
+      {% else %}
+      <p class="all-professors">{{course.name}} already has all the available professors </p>
+      {% endif %}
+    </div>
+  </section>
+
   </div>
-</section>
 
-  
-</div>
 
-<section class="professors">
-  <div class="subsection-title">
-    <h2>Professors</h2>
-    <!-- <img src="{% static 'images/NuttyProfessor.jpeg' %}" alt="Nutty Professor" /> -->
-  </div>
-  <h3>{{ course.name }}' Professors</h3>
-  <div class="subsection-content">
-  
-
-   {% if course.professors.count %}
-    {% for professor in professors %}
+  <section class="professors">
+    <div class="subsection-title">
+      <h2>Professors</h2>
+    </div>
+    <h3>
+      {{ course.name }}' Professors
+    </h3>
+    <div class="subsection-content">
+      {% if course.professors.count %}
+      {% for professor in course.professors.all %}
       <div class="professor-container">
         <div class="color-block" style="background-color: {{ professor.bio }}"></div>
         <a href="{% url 'professor-detail' professor.id %}">
-            <p> {{ professor.name }} - {{ professor.bio }}</p>
-            <form action="{% url 'remove-professor' course.id professor.id %}" method="post">
-        {% csrf_token %}
-           <button type="submit" class="btn btn-danger">Remove Professor</button>
+          <p>
+            {{ professor.name }} -
+            {{ professor.bio }}
+          </p>
+          <form action="{% url 'remove-professor' course.id professor.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Remove Professor</button>
           </form>
-          </a>
+        </a>
       </div>
       {% endfor %}
-    {% else %}
+      {% else %}
       <p class="no-professors">{{course.name}} doesn't have a professor assigned!</p>
-    {% endif %}
-  </div>
+      {% endif %}
+    </div>
+  </section>
 
 
-{% endblock %}
-
-
+  {% endblock %}
 
 
 

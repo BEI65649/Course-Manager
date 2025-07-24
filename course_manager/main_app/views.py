@@ -33,12 +33,12 @@ def course_detail(request, course_id):
         course = Course.objects.get(user=request.user, id=course_id)
     except Course.DoesNotExist:
         return redirect('course_create')
-    professors = Professor.objects.all() 
+    # professors = Professor.objects.all() 
     professors_course_doesnt_have = Professor.objects.exclude(id__in = course.professors.all().values_list('id'))
     location_form = LocationForm()
     return render(request, 'courses/detail.html', {
         'course': course, 'location_form': location_form,
-        'professors': professors_course_doesnt_have  
+        'professors' : professors_course_doesnt_have
     })
 
 class CourseCreate(LoginRequiredMixin, CreateView):
