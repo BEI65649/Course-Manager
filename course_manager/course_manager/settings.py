@@ -60,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = 'course_manager.urls'
@@ -155,10 +156,4 @@ LOGOUT_REDIRECT_URL = 'home'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MIDDLEWARE = [
-    "django.middleware.security.SecurityMiddleware",
-    # Add this. It MUST be added after the line above: 
-    "whitenoise.middleware.WhiteNoiseMiddleware",
-    # Other items below
-]
 
