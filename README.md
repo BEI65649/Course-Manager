@@ -6,7 +6,8 @@ Background info: I built this app, because I recently applied for Software devel
 
 Planning materials link: https://trello.com/b/u1WHV95G/ga-unit-4-professor-course-manager-database
 
-Deployment link: 
+Deployment link: https://course-database-6f1c29085b0f.herokuapp.com
+
 
 Attributions: Google and General Assembly markdown
 
