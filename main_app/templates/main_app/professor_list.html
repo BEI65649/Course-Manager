@@ -13,6 +13,7 @@
   <img src="{% static 'images/Professor2.jpeg' %}" alt="A Professor" />
 </section>
 
+
 <section class="card-container">
   {% for professor in professor_list %}
     <div class="card" style="border-color: {{ professor.color }}">
@@ -25,6 +26,9 @@
       </a>
     </div>
   {% endfor %}
+
 </section>
 
 {% endblock %}
+
+
