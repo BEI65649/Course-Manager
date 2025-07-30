@@ -106,7 +106,6 @@ def signup(request):
             return redirect('course-index')
         else:
             error_message = 'Invalid sign up - try again'
-            print(form.errors)
     form = UserForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'signup.html', context)
